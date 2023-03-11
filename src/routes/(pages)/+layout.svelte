@@ -15,10 +15,6 @@
 	};
 </script>
 
-<svelte:head>
-	<title>Teaching</title>
-</svelte:head>
-
 <div class="main">
 	<div class="left">
 		<div class="container">
@@ -46,7 +42,7 @@
 
 <style>
 	.main {
-		height: 100%;
+		min-height: 100%;
 		background-color: #f9f9f9;
 
 		display: grid;
@@ -60,6 +56,8 @@
 		align-items: center;
 		/* justify-content: center; */
 		padding: 40px 10px;
+
+		box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
 	}
 
 	.right {

@@ -4,21 +4,23 @@ export class Question {
 	public readonly id: number;
 	public readonly title: string;
 	public readonly answers: Answer[];
+	public chosenAnswer: Answer | undefined;
 	public mark: number;
 	public answered: boolean;
 
 	constructor(id: number, title: string, answers: Answer[]) {
 		this.id = id;
+		this.title = title;
 		this.answers = answers;
 		this.mark = 0;
-		this.title = '';
 		this.answered = false;
 	}
 
 	public makeAnswer(answerId: number): boolean | undefined {
 		this.answered = true;
-		const isCorrectChosen = this.answers.find((answer) => answer.id == answerId)?.isCorrect;
-		this.mark = isCorrectChosen ? 0 : 1;
+		this.chosenAnswer = this.answers.find((answer) => answer.id == answerId);
+		const isCorrectChosen = this.chosenAnswer?.isCorrect;
+		this.mark = isCorrectChosen ? 1 : 0;
 		return isCorrectChosen;
 	}
 
@@ -28,6 +30,7 @@ export class Question {
 			const answerRes = new Answer(answer.id, answer.text, answer.correct);
 			answers.push(answerRes);
 		}
+
 		const question = new Question(questionObj.id, questionObj.title, answers);
 		return question;
 	}

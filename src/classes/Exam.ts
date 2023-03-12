@@ -24,6 +24,7 @@ export class Exam {
 		for (const question of this.questions) {
 			question.answered = false;
 			question.chosenAnswer = undefined;
+			question.mark = 0;
 		}
 	}
 

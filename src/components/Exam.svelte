@@ -10,6 +10,12 @@
 
 	const max = 50;
 	$: result = exam?.checkExam() || 0;
+
+	const clear = () => {
+		exam?.clear();
+		exam?.save();
+		exam = exam;
+	};
 </script>
 
 <div class="main">
@@ -25,21 +31,29 @@
 			/>
 		{/each}
 	{/if}
-	<div class="result">
-		<div class="result-description">Ваш результат:</div>
-		<div class="result-main" class:good={result >= max} class:bad={result <= max}>
-			{exam?.result}%
+	<div class="result-container">
+		<div class="result">
+			<div class="result-description">Ваш результат:</div>
+			<div class="result-main" class:good={result >= max} class:bad={result <= max}>
+				{exam?.result}%
+			</div>
 		</div>
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<div class="clear" on:click={clear}>Очистити</div>
 	</div>
 </div>
 
 <style>
-	.result {
+	.result-container {
 		background: #ffffff;
 		border-radius: 10px;
 		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 		padding: 25px 30px;
 		margin: 30px 0px;
+
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 	}
 
 	.result-main,
@@ -60,5 +74,22 @@
 
 	.good {
 		color: #5aced6;
+	}
+
+	.clear {
+		background: #5aced6;
+		border-radius: 10px;
+		color: white !important;
+		padding: 15px 40px;
+		font-family: 'Poppins';
+		font-style: normal;
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 24px;
+		/* identical to box height */
+
+		letter-spacing: 0.02em;
+
+		cursor: pointer;
 	}
 </style>

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { fade } from 'svelte/transition';
 	import { ClientExam } from '../../../classes/ClientExam';
 	import { Topic } from '../../../classes/Topic';
 	import Exam from '../../../components/Exam.svelte';

@@ -1,7 +1,7 @@
 import type { MiniExam } from './Exam';
 import { Topic } from './Topic';
 
-export class ClientTopic extends Topic {
+export class ServerTopic extends Topic {
 	public save() {
 		const jsonData = JSON.stringify(this.convertToMiniTopic());
 		localStorage.setItem('topic' + this.id, jsonData);

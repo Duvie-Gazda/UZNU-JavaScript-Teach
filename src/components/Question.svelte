@@ -94,6 +94,6 @@
 	}
 
 	.good {
-		color: #5aced6;
+		color: #1fc5d0;
 	}
 </style>

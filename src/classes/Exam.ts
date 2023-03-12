@@ -14,7 +14,7 @@ export class Exam {
 	public checkExam(): number | null {
 		const current = this.questions.reduce((val, current) => val + current.mark, 0);
 
-		this.result = (100 * current) / this.questions.length;
+		this.result = Number.parseInt(((100 * current) / this.questions.length).toFixed(0));
 
 		return this.result;
 	}

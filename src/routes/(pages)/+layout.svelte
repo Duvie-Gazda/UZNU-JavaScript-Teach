@@ -81,6 +81,7 @@
 
 	.menu-item {
 		padding: 15px 40px;
+		text-align: center;
 
 		font-family: 'Poppins';
 		font-style: normal;

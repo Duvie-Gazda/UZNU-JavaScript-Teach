@@ -15,8 +15,8 @@
 
 <div class="main">
 	<div class="container">
-		<div class="title">{topic?.article.title}</div>
-		<div class="article-container">{topic?.article.text}</div>
+		<!-- <div class="title">{topic?.article.title}</div> -->
+		<div class="article-container">{@html topic?.article.text}</div>
 		<Exam exam={topic?.exam} />
 	</div>
 </div>
@@ -48,6 +48,7 @@
 	.article-container {
 		background: #ffffff;
 		border-radius: 10px;
+		margin-top: 20px;
 		padding: 25px 30px;
 		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
 

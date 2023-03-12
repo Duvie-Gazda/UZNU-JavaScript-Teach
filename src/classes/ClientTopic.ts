@@ -1,41 +1,27 @@
-import { HOST } from '../consts';
+import type { MiniExam } from './Exam';
 import { Topic } from './Topic';
-import data from '../data.json';
-import { Article } from './Article';
-import { Exam } from './Exam';
-import { Question } from './Question';
 
 export class ClientTopic extends Topic {
-	public static get(): ClientTopic[] {
-		const topics: ClientTopic[] = [];
-		for (const topic of data) {
-			const article = new Article(topic.article.id, topic.article.text, topic.article.title);
-
-			const questions: Question[] = [];
-			for (const question of topic.exam.questions) {
-				questions.push(Question.generateFromObject(question));
-			}
-
-			const exam = new Exam(topic.exam.id, questions);
-			topics.push(new Topic(topic.id, article, exam));
-		}
-		return topics;
+	public save() {
+		const jsonData = JSON.stringify(this.convertToMiniTopic());
+		localStorage.setItem('topic' + this.id, jsonData);
 	}
 
-	public static generateFromJSON(jsonObj: string): ClientTopic[] {
-		const topics: ClientTopic[] = [];
-		const objs = JSON.parse(jsonObj);
-		for (const topic of objs) {
-			const article = new Article(topic.article.id, topic.article.text, topic.article.title);
+	public upload() {
+		const miniTopicJSON: string = localStorage.getItem('topic' + this.id) || '';
+		const miniTopic: MiniTopic = JSON.parse(miniTopicJSON);
 
-			const questions: Question[] = [];
-			for (const question of topic.exam.questions) {
-				questions.push(Question.generateFromObject(question));
-			}
+		this.exam.updateWithMiniExam(miniTopic.miniExam);
+	}
 
-			const exam = new Exam(topic.exam.id, questions);
-			topics.push(new Topic(topic.id, article, exam));
-		}
-		return topics;
+	public convertToMiniTopic(): MiniTopic {
+		const result: MiniTopic = {
+			miniExam: this.exam.convertToMiniExam()
+		};
+		return result;
 	}
 }
+
+export type MiniTopic = {
+	miniExam: MiniExam;
+};

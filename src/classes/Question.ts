@@ -41,3 +41,8 @@ export type QuestionType = {
 	title: string;
 	answers: Array<AnswerType>;
 };
+
+export type MiniQuestion = {
+	id: number;
+	answeredId: number | undefined;
+};

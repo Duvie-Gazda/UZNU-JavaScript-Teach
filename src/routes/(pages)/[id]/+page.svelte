@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { ClientTopic } from '../../../classes/ClientTopic';
+	import { Topic } from '../../../classes/Topic';
 	import Exam from '../../../components/Exam.svelte';
 
 	export let data;
 
-	const topics: ClientTopic[] = ClientTopic.generateFromJSON(data.topics);
+	const topics: Topic[] = Topic.generateFromJSON(data.topics);
 	$: topic = topics.find((topic) => topic.id == Number.parseInt($page.params.id));
 </script>
 
@@ -30,19 +30,6 @@
 
 	.container {
 		width: 90%;
-	}
-
-	.title {
-		font-family: 'Exo 2';
-		font-style: normal;
-		font-weight: 500;
-		font-size: 30px;
-		line-height: 40px;
-		/* identical to box height */
-
-		color: #3e435d;
-
-		padding: 20px;
 	}
 
 	.article-container {

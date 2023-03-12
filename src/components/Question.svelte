@@ -96,4 +96,19 @@
 	.good {
 		color: #1fc5d0;
 	}
+
+	@media only screen and (max-width: 600px) {
+		.answer {
+			width: 90%;
+
+			padding-left: 30px;
+			margin-left: 0px;
+		}
+		:global(pre) {
+			overflow-x: scroll;
+		}
+		:global(li) {
+			word-wrap: break-word;
+		}
+	}
 </style>

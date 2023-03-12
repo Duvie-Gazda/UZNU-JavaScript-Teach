@@ -83,7 +83,7 @@
 		padding: 15px 40px;
 		text-align: center;
 
-		font-family: 'Poppins';
+		font-family: 'Exo 2';
 		font-style: normal;
 		font-weight: 400;
 		font-size: 16px;
@@ -111,7 +111,7 @@
 	}
 
 	.title {
-		font-family: 'Poppins';
+		font-family: 'Exo 2';
 		font-style: normal;
 		font-weight: 600;
 		font-size: 28px;
@@ -120,5 +120,14 @@
 
 		color: #3e435d;
 		text-align: center;
+	}
+
+	@media only screen and (max-width: 600px) {
+		.main {
+			min-height: 100%;
+			background-color: #f9f9f9;
+
+			display: block;
+		}
 	}
 </style>

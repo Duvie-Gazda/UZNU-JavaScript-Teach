@@ -1,0 +1,10 @@
+{
+	"/(pages)": [
+		"src/routes/(pages)/+layout.server.js",
+		"src/routes/(pages)/+layout.server.js"
+	],
+	"/": [],
+	"/(pages)/[id]": [
+		"src/routes/(pages)/+layout.server.js"
+	]
+}

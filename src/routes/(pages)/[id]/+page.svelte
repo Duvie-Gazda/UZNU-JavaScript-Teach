@@ -1,12 +1,22 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { ClientExam } from '../../../classes/ClientExam';
 	import { Topic } from '../../../classes/Topic';
 	import Exam from '../../../components/Exam.svelte';
 
 	export let data;
 
 	const topics: Topic[] = Topic.generateFromJSON(data.topics);
+	let clientExam: ClientExam;
 	$: topic = topics.find((topic) => topic.id == Number.parseInt($page.params.id));
+	$: clientExam = new ClientExam(
+		topic?.exam.id || 0,
+		topic?.exam.result || 0,
+		topic?.exam.questions || []
+	);
+	$: if (typeof window != 'undefined') {
+		clientExam.upload();
+	}
 </script>
 
 <svelte:head>
@@ -17,7 +27,7 @@
 	<div class="container">
 		<!-- <div class="title">{topic?.article.title}</div> -->
 		<div class="article-container">{@html topic?.article.text}</div>
-		<Exam exam={topic?.exam} />
+		<Exam exam={clientExam} />
 	</div>
 </div>
 

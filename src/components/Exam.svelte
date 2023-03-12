@@ -1,29 +1,26 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { ClientExam } from '../classes/ClientExam';
+	import type { ClientExam } from '../classes/ClientExam';
 	import type { Exam } from '../classes/Exam';
 	import Question from './Question.svelte';
 
-	export let exam: Exam | undefined;
+	export let exam: ClientExam | undefined;
 
-	let clientExam = new ClientExam(exam?.id || 0, exam?.result || 0, exam?.questions || []);
+	// let exam = new exam(exam?.id || 0, exam?.result || 0, exam?.questions || []);
 
 	const max = 50;
-	$: result = clientExam?.checkExam() || 0;
-	$: if (typeof window != 'undefined') {
-		clientExam.upload();
-	}
+	$: result = exam?.checkExam() || 0;
 </script>
 
 <div class="main">
-	{#if clientExam != null}
-		{#each clientExam.questions as question}
+	{#if exam != null}
+		{#each exam.questions as question}
 			<Question
 				{question}
 				onClick={() => {
-					clientExam?.checkExam();
-					clientExam = clientExam;
-					clientExam.save();
+					exam?.checkExam();
+					exam?.save();
+					exam = exam;
 				}}
 			/>
 		{/each}
@@ -31,7 +28,7 @@
 	<div class="result">
 		<div class="result-description">Ваш результат:</div>
 		<div class="result-main" class:good={result >= max} class:bad={result <= max}>
-			{clientExam?.result}%
+			{exam?.result}%
 		</div>
 	</div>
 </div>

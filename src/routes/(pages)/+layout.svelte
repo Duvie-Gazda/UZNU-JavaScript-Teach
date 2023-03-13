@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import type { Topic } from '../../classes/Topic';
 
 	export let data;
 	export let url: URL;

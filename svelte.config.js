@@ -1,6 +1,19 @@
+// import adapter from '@sveltejs/adapter-static';
+import { vitePreprocess } from '@sveltejs/kit/vite';
+
+// export default {
+// 	preprocess: vitePreprocess(),
+// 	kit: {
+// 		adapter: adapter({
+// 			fallback: 'index.html' // may differ from host to host
+// 		})
+// 	}
+// };
+
 import adapter from '@sveltejs/adapter-netlify';
 
 export default {
+	preprocess: vitePreprocess(),
 	kit: {
 		// default options are shown
 		adapter: adapter({
